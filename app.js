@@ -29,13 +29,13 @@ let words = [
   
   para[0].innerText = userGuess
   
-  let found = false
+  let life = 6  
   
   btn[0].addEventListener('click', function () {
-    
-    let life = 6  
-     
-
+      
+      
+      let found = false
+      
     let userGuessToArray = userGuess.split("")
     
     for (let i = 0; i < guessWord[0].length; i++) {
@@ -46,6 +46,7 @@ let words = [
         
             found = true
             userGuessToArray[i] = inp.value
+            para[0].innerText = userGuessToArray
             
             
             
@@ -56,13 +57,22 @@ let words = [
         if(!found){ 
 
           life -= 1
-          getlife[0].innerText += ` ${life}`
+          getlife[0].innerText = `Life ${life}`
           
           
         }
 
     inp.value = ''
     userGuess = userGuessToArray.join("")
+
+    if (guessWord[0] == userGuess) {
+        
+        para[0].innerText = "You win!"
+    }else if (life == 0) {
+        
+        para[0].innerText = "Game over!"
+        
+    }
     
     console.log(guessWord[0]);
     console.log(userGuess);
